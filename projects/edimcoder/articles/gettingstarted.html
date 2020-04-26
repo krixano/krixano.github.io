@@ -1,0 +1,235 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>EdimCoder - Christian L. Seibold</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+	<link href="../../../main.css" rel="stylesheet">
+</head>
+<body>
+	<div class="background-img"></div>
+
+	<header>
+		<nav>
+			<a id="title" href="../../../index.html">Christian L. Seibold</a>
+			<ul class="right">
+				<li><a href="../../../index.html">Projects</a></li>
+				<li><a href="../../../blog/index.html">Blog</a></li>
+				<li><a href="../../../music/index.html">Music</a></li>
+				<li><a href="../../conlangs/index.html">Conlangs</a></li>
+				<li><a href="../../../about/index.html">About Me</a></li>
+			</ul>
+		</nav>
+		<div id="article-title"><a href="../index.html">EdimCoder</a> &rsaquo; <a href="index.html">Articles</a> &rsaquo; Getting Started With EdimCoder</div>
+	</header>
+
+	<main class="article">
+		<nav>
+			<ul>
+				<li><a href="../state-and-roadmap.html">Current State and Roadmap</a></li>
+				<li><a href="index.html" class="active">Articles</a></li>
+				<li><a href="../download.html">Download</a></li>
+				<li><a href="https://nest.pijul.org/krixano/EdimCoder">Repo</a></li>
+			</ul>
+		</nav>
+
+		<div class="section">Starting the Program</div>
+		<p>
+			There are multiple ways to start the program. Double clicking the executable, or running it from the terminal, will open the editor with a Scratch buffer. The Scratch buffer can be used for notes, copying and pasting for later use, and other things.
+		</p>
+		<p>
+			The other way to start the program is by dragging a file to the executable, or, in the terminal, passing the program a file path. This will open the Scratch buffer and the file. Then the active buffer is switched to the provided file.
+		</p>
+
+		<div class="section">The Prompt</div>
+		<p>
+			As soon as you start the program, you are met with a prompt. This is the prompt where you type commands used in the editing of a file. The prompt looks like this:
+		</p>
+		<pre><code>
+<span class="prompt">&lt;0: -Scratch-*|0&gt; </span>
+		</code></pre>
+		<ul>
+			<li>The <code>0:</code> tells you the current active buffer.</li>
+			<li><code>-Scratch-</code> is the filename of the active buffer.</li>
+			<li><code>*</code> shows that the buffer/file has been modified since it's last save.</li>
+			<li><code>|0</code> is the current (active) line (aka. cursor). The term used for this will always be "current line". The current line is the line number used by default when commands are not passed a line number.</li>
+		</ul>
+
+		<div class="section">The Help Command</div>
+		<p>
+			There is a <code>help</code> command that will print out all of the commands that EdimCoder has along with what they do.
+		</p>
+
+		<div class="section">Output, Context, and Gutter Info</div>
+		<p>
+			EdimCoder tries to make sure the user knows what's happening at all times. It does this by providing Output and Context for all commands, and Gutter Information for commands that manipulate the file.
+		</p>
+
+		<div class="subsection">Output</div>
+		<p>
+			EdimCoder gives much more output than other line editors. The output given tries to be helpful and non-redundant. Both Context and Gutter Info may be a part of this output.
+		</p>
+
+		<div class="subsection">Context</div>
+		<p>
+			Commands that manipulate the file give context by showing the previous line of the line being modified/acted on. Additionally, most commands will also print out the line after the operation. This is to hopefully help the user recognize where in the file the command is happening.
+		</p>
+
+		<div class="subsection">Gutter Info</div>
+		<p>
+			Gutter info is used by most file manipulation commands that print out lines by giving information on what command is being applied to the line number or what is happening with that line. For example, the delete command will show the line number being deleted with an <code>x</code> in the gutter, the far left just before the line number.
+		</p>
+		<p>
+			You may also see <code>^</code> or <code>V</code> in the gutter. This is used with Context to show what has happened to the line number after the line that was operated on. For example, the delete command will show the line that was after the line(s) that were deleted with <code>^</code> to show that that line was moved up.
+		</p>
+
+		<div class="section">The Commands</div>
+		<p>
+			Commands can be grouped into categories based on what they do (these groups are shown in the help file). Additionally, they can also be sorted by whether they modify lines or characters and whether they replace/insert lines or characters.
+		</p>
+
+		<div class="subsection">Categories</div>
+		<ul>
+			<li><strong>Basic</strong> - Basic file/line manipulation commands (insert, delete, move, jump to)</li>
+			<li><strong>Find and Replace</strong></li>
+			<li><strong>Print and Preview</strong> - Print will print a line or set of lines, Preview mode will act like pg/less/more. If Preview mode is provided a line number, it will begin at that line number.</li>
+			<li><strong>Files and Buffers</strong> - Manipulation of files and buffers, including saving, opening new file, switching buffers, et al.</li>
+			<li><strong>File Info, Outlines, and Bookmarks</strong> - Commands to show file info, an outline of the current file, and Bookmarks</li>
+		</ul>
+
+		<div class="subsection">"Object" being modified/acted on/applied to</div>
+		<p>
+			Commands modify or act on one of the following two things:
+		</p>
+		<ol>
+			<li>Lines (or Line Ranges)</li>
+			<li>Characters</li>
+		</ol>
+		<p>
+			An example of this would be an insert command that inserts before a line number. This command acts on a line. Find will search for characters, so that command acts on characters.
+		</p>
+
+		<div class="subsection">"Object" being used by (aka. the input to) the command</div>
+		<p>
+			Many commands take input. This input can be one of the following two things:
+		</p>
+		<ol>
+			<li>Line(s)</li>
+			<li>Characters</li>
+		</ol>
+		<p>
+			An example of this would be the insert command that inserts before a line number <em>with</em> a line or lines. The append command inserts characters after a line, so it uses (as input) characters. One Replace command searches for characters and replaces it with characters.
+		</p>
+
+		<div class="subsection">Multiple Versions of Commands</div>
+		<p>
+			Some commands, namely Find and Replace, have different versions of the command. For example, the Replace command can replace a line with a line, or characters with characters.
+		</p>
+
+		<div class="subsection">Command Names</div>
+		<p>
+			The system behind the way the commands are named is as follows:
+		</p>
+		<ul>
+			<li>Commands that are uppercase accept characters as input</li>
+			<li>Commands that are lowercase accept line(s) as input</li>
+			<li>Most commands are one character, some of the less useful ones are a full word (e.g. 'help', 'clear', and 'info')</li>
+			<li>Often the command's character is taken from the first letter of the English word that represents what the command does. All variations of the Replace command use 'r' or 'R' as they <em>R</em>eplace.</li>
+			<li>Commands that don't modify the file are almost always lowercase</li>
+		</ul>
+
+		<div class="subsection">Command Syntax</div>
+		<p>
+			Command syntax is pretty basic. They can have one of the following:
+		</p>
+		<pre><code>
+command
+command (line/range)
+command (bookmark)
+command (line/range) (string)
+command (bookmark) (string)
+
+</code></pre>
+		<p>
+			All commands that take a string also allow the string to be omitted, in which case they will prompt for the string.
+			<br>All commands that take a line number or range allow the line number/range to be omitted, in which case the current line will be used.
+			<br>All commands that take a line number or range may also take a bookmark (more on these later).
+		</p>
+		<p>
+			Strings are <em>not</em> denoted by quotes. Instead, the one space directly after the line/range is ignored, and the rest after is part of the string.
+		</p>
+		<p>
+			If a command takes a second input (e.g. the replace commands), a prompt will be given.
+		</p>
+
+		<div class="section">Line Ranges</div>
+		<p>
+			Previously I have mentioned line ranges. Almost all file manipulation commands will accept line ranges. This is the syntax:
+		</p>
+		<pre><code>
+&lt;start line number&gt;:&lt;end line number&gt;
+
+</code></pre>
+		<p>
+			Some commands act on the whole line range, for example, the delete and move commands will delete/move the line or the whole line range.
+			<br>However, some commands only act on <em>one</em> line. If a line range is given in these cases, the command will use the most intuitive line. For example, inserting a line before a range will insert a line before the start line number. Inserting a line after a range will insert a line after the end line number.
+		</p>
+		<p>
+			Whether a command can accept a line or line range, or just accepts a line, is shown in the help screen.
+		</p>
+
+		<div class="section">Bookmarks</div>
+		<p>
+			Bookmarks allow you to give a line range a name. If you wanted to give a command a line range, you have the option of providing a bookmark, in which case the command will use the line/line range that the bookmark represents.
+		</p>
+		<p>
+			You can create a bookmark with the <code>d (range) (string)</code> command. The provided string is the name of the bookmark.
+			<br>When giving a command a bookmark, the bookmark has the syntax <code>#bkmrkName</code>.
+		</p>
+		<p>
+			You can see a list of your bookmarks with the <code>g</code> command.
+		</p>
+
+		<div class="section">Default Bookmark</div>
+		<p>
+			Some default bookmarks are provided by EdimCoder. These are generated automatically. You can see a list of them at the bottom of the help screen.
+		</p>
+
+		<div class="subsection">The Section Bookmark</div>
+		<p>
+			A particularly useful bookmark is the section bookmark. The section bookmark changes based on context (what the current line is). It always represents the line range of the bookmark that the current line is within the bounds of.
+		</p>
+		<p>
+			If you have a bookmark called <code>testFunction</code> that represents lines 10:25, and the current line is on line 15 (within the bounds of 10 and 25), then <code>#s</code> will represent lines 10:25.
+		</p>
+
+		<div class="section">Outlines</div>
+		<p>
+			Outlines are provided for some code files, including C, Markdown, C/C++ Header, Lua, and TXT files. Currently outlines only show function declarations (or headers).
+		</p>
+		<p>
+			Outlines also auto-generate bookmarks for all of your function declarations, where the name of the bookmark is the name of the function.
+		</p>
+
+		<div class="section">Multiline Insertion Mode</div>
+		<p>
+			When running a command that allows the insertion of multiple lines, for example 'i' or 'a', you denote end of input with Ctrl-D on Unix or Ctrl-Z on Windows. The line that you press Ctrl-D on will <strong>not</strong> be included with the lines being inserted.
+		</p>
+		<p>
+			You can also cancel the operation, including all lines entered during the operation, by pressing Ctrl-X.
+		</p>
+	</main>
+
+	<aside> <!-- For table of contents of main content *only* -->
+	</aside>
+
+	<footer>
+		<nav>
+			<a href="https://nest.pijul.org/krixano">Pijul Repos</a>
+			<a href="https://github.com/krixano">GitHub</a>
+			<a href="gopher://zaibatsu.circumlunar.space:70/0/~krixano">Gopherhole</a>
+			<a href="https://www.youtube.com/channel/UC3Ga7Cqbm-fEWwKbCDfBFzQ">YouTube</a>
+		</nav>
+	</footer>
+</body>
+</html>
