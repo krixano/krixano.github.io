@@ -15,7 +15,7 @@
 
 body {
 	margin: 0;
-	padding; 0;
+	padding: 0;
 	font-family: 'Roboto', 'Helvetica', sand-serif;
 	padding-bottom: calc(var(--section-bottom-margin)*2);
 }
