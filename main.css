@@ -110,7 +110,7 @@ header #article-title, header .article-title {
 
 main {
 	display: block;
-	max-width: calc(var(--width-max) - 8px*2);
+	max-width: calc(var(--width-max)*1.1 - 8px*2);
 	margin: auto;
 	font-size: 1.1rem;
 	font-weight: 300;
